@@ -2,7 +2,7 @@
 
 /**
  * _printf - Produces output according to a format.
- * @format: The format string containing the characters and the format specifiers
+ * @format: The format string containing characters and format specifiers
  *
  * Return: The number of characters printed (excluding the null byte)
  */
@@ -48,6 +48,10 @@ int _printf(const char *format, ...)
 				write(1, "%", 1);
 				count++;
 			}
+			else if (format[i] == 'd' || format[i] == 'i')
+			{
+				count += print_number(va_arg(args, int));
+			}
 			else
 			{
 				write(1, "%", 1);
@@ -66,3 +70,4 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+
